@@ -11,6 +11,14 @@ const ChatBox = () => {
                 <p>Ricky NewUser <img className='dot' src={assets.green_dot} alt="" /></p>
                 <img src={assets.help_icon} className='help' alt="" />
             </div>
+            <div className="chat-input">
+                <input type="text" placeholder='Send a message' />
+                <input type="file" id='image' accept='image/png,image/jpeg' hidden />
+                <label htmlFor='image'>
+                    <img src={assets.gallery_icon} alt="" />
+                </label>
+                <img src={assets.send_button} alt="" />
+            </div>
         </div>
     )
 }
