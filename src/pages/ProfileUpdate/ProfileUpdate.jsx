@@ -31,7 +31,7 @@ const ProfileUpdate = () => {
             const docRef = doc(db, 'users', uid);
 
             if (image) {
-                const imageUrl = await upload(image); // Await the upload function
+                const imageUrl = await upload(image);
                 setPrevImage(imageUrl);
 
                 await updateDoc(docRef, {
@@ -47,7 +47,7 @@ const ProfileUpdate = () => {
             }
             const snap = await getDoc(docRef);
             setUserData(snap.data())
-            navigate('chat');
+            navigate('/chat');
 
             toast.success("Profile updated successfully!");
         } catch (error) {
