@@ -65,3 +65,11 @@ textarea {
     font-size: 16px;
     cursor: pointer;
 }
+
+@media(max-width:768px) {
+    .profile-container {
+        flex-direction: column;
+        justify-content: center;
+        gap: 30px
+    }
+}
