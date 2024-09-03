@@ -5,7 +5,7 @@ import { AppContext } from '../../context/AppContext'
 import { arrayUnion, doc, getDoc, onSnapshot, updateDoc } from 'firebase/firestore'
 import { db } from '../../config/firebase'
 import { toast } from 'react-toastify'
-import upload from '../../lib/Upload'
+import upload from '../../lib/upload'
 
 
 const ChatBox = () => {
