@@ -109,24 +109,35 @@ const LeftSidebar = () => {
         try {
             setMessagesId(item.messageId);
             setChatUser(item);
+    
             const userChatsRef = doc(db, 'chats', userData.id);
             const userChatsSnapshot = await getDoc(userChatsRef);
             const userChatsData = userChatsSnapshot.data();
-            const chatIndex = userChatsData.chatsData.findIndex((c) => c.messageId === item.messageId);
-            userChatsData.chatsData[chatIndex].messageSeen = true;
-
-            await updateDoc(userChatsRef, {
-                chatsData: userChatsData.chatsData
-            })
-
-            setChatVisual(true);
-
+    
+            if (userChatsData?.chatsData) {  // Ensure chatsData is defined
+                const chatIndex = userChatsData.chatsData.findIndex((c) => c.messageId === item.messageId);
+    
+                if (chatIndex !== -1) {  // Ensure chatIndex is valid
+                    userChatsData.chatsData[chatIndex].messageSeen = true;
+    
+                    await updateDoc(userChatsRef, {
+                        chatsData: userChatsData.chatsData
+                    });
+    
+                    setChatVisual(true);
+                } else {
+                    console.error("Chat not found for the given messageId.");
+                }
+            } else {
+                console.error("chatsData is undefined or doesn't exist.");
+            }
+    
         } catch (error) {
             console.error(error);
-            toast.error(error.message)
+            toast.error(error.message);
         }
-    }
-
+    };
+    
     useEffect(() => {
         const updateChatUserData = async () => {
             if (chatUser) {
