@@ -3,7 +3,7 @@ import './LeftSidebar.css'
 import assets from '../../assets/assets'
 import { useNavigate } from 'react-router-dom'
 import { arrayUnion, collection, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore";
-import { db } from '../../config/firebase';
+import { db, logout } from '../../config/firebase';
 import { AppContext } from '../../context/AppContext';
 import { toast } from 'react-toastify';
 
@@ -149,9 +149,7 @@ const LeftSidebar = () => {
                         <div className="sub-menu">
                             <p onClick={() => navigate('/profile')}>Edit Profile</p>
                             <hr />
-                            <p>
-                                LogOut
-                            </p>
+                            <p onClick={()=>logout()}>LogOut</p>
                         </div>
                     </div>
                 </div>
